@@ -20,6 +20,15 @@ class ToursController < ApplicationController
     end
   end
 
+  def update
+    @tour = Tour.find(params[:id])
+    if @tour.update(tour_params)
+      redirect_to @tour
+    else
+      render json: { errors: @tour.errors.full_messages }
+    end
+  end
+
   private
 
     def tour_params
