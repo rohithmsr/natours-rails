@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_02_132014) do
+ActiveRecord::Schema.define(version: 2023_07_09_032440) do
 
   create_table "tours", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 2023_07_02_132014) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "duration"
     t.string "difficulty"
+    t.decimal "price", precision: 5, scale: 2
+    t.float "price_discount", default: 0.0
+    t.text "description"
   end
 
 end
