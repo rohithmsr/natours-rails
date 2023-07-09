@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'tours#index'
-
-  resources :tours
+  namespace :api do
+    namespace :v1, constraints: { format: :json } do
+      resources :tours
+    end
+  end
 end
