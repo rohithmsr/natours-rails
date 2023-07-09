@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_09_032440) do
+ActiveRecord::Schema.define(version: 2023_07_09_041944) do
 
   create_table "tours", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2023_07_09_032440) do
     t.decimal "price", precision: 5, scale: 2
     t.float "price_discount", default: 0.0
     t.text "description"
+    t.string "key"
+    t.index ["key"], name: "index_tours_on_key", unique: true
   end
 
 end
