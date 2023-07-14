@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  namespace :api do
-    namespace :v1, constraints: { format: :json } do
+  namespace :api, constraints: { format: :json } do
+    namespace :v1 do
       resources :tours
     end
   end
