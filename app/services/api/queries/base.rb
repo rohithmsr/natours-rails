@@ -21,6 +21,11 @@ module Api
         raise NotImplementedError
       end
 
+      def all_records
+        # Can be used for cases where you return only a certain fields to the user
+        @scope
+      end
+
       def records
         paginate(@scope)
       end
