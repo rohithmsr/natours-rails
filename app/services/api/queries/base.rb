@@ -4,13 +4,14 @@ module Api
       DEFAULT_PAGE = 1
       DEFAULT_LIMIT = 10
 
-      attr_reader :params, :scope, :page, :limit, :filters
+      attr_reader :params, :scope, :page, :limit, :filters, :fields
 
       def initialize(params)
         @params = params
         @page = params[:page] ? params[:page].to_i : DEFAULT_PAGE
         @limit = params[:limit] ? params[:limit].to_i : DEFAULT_LIMIT
         @filters = params[:filters] || {}
+        @fields = params[:fields]
         @scope = default_scope
       end
 
@@ -28,7 +29,8 @@ module Api
       end
 
       def records
-        paginate(@scope)
+        rows = paginate(@scope)
+        project(rows)
       end
 
       def count
@@ -39,6 +41,15 @@ module Api
 
         def paginate(records)
           records.offset((page - 1) * limit).limit(limit)
+        end
+
+        def project(records)
+          return records unless fields.present?
+
+          field_names = fields.split(',')
+          filtered_fields = field_names.intersection(records.attribute_names)
+
+          records.select(filtered_fields)
         end
 
         def filter_records

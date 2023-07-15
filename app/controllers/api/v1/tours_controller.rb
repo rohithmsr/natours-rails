@@ -51,6 +51,7 @@ module Api
           params.permit(
             :page,
             :limit,
+            :fields,
             filters: {}
           )
         end
