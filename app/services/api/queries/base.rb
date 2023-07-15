@@ -4,12 +4,13 @@ module Api
       DEFAULT_PAGE = 1
       DEFAULT_LIMIT = 10
 
-      attr_reader :params, :scope, :page, :limit
+      attr_reader :params, :scope, :page, :limit, :filters
 
       def initialize(params)
         @params = params
         @page = params[:page] ? params[:page].to_i : DEFAULT_PAGE
         @limit = params[:limit] ? params[:limit].to_i : DEFAULT_LIMIT
+        @filters = params[:filters] || {}
         @scope = default_scope
       end
 
@@ -18,7 +19,7 @@ module Api
       end
 
       def call
-        raise NotImplementedError
+        filter_records
       end
 
       def all_records
@@ -38,6 +39,10 @@ module Api
 
         def paginate(records)
           records.offset((page - 1) * limit).limit(limit)
+        end
+
+        def filter_records
+          raise NotImplementedError
         end
     end
   end

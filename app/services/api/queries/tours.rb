@@ -8,6 +8,15 @@ module Api
         def default_scope
           Tour.all
         end
+
+        def filter_records
+          @scope = scope.where(difficulty_levels_filter)
+        end
+
+        def difficulty_levels_filter
+          difficulty_levels = filters.dig(:difficulty)&.split(',')
+          { difficulty: difficulty_levels } unless difficulty_levels.blank?
+        end
     end
   end
 end

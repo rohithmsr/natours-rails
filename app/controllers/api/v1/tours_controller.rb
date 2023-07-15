@@ -5,9 +5,10 @@ module Api
 
       def index
         query = Api::Queries::Tours.new(index_params)
+        query.call
         tours = query.records
 
-        render json: { tours: tours, result_count: query.count }
+        render json: { result_count: query.count, tours: tours  }
       end
 
       def show
@@ -49,7 +50,8 @@ module Api
         def index_params
           params.permit(
             :page,
-            :limit
+            :limit,
+            filters: {}
           )
         end
 
