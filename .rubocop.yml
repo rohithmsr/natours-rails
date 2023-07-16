@@ -8,6 +8,7 @@ AllCops:
     - 'config/**/*'
     - 'bin/*'
     - 'config.ru'
+    - 'Gemfile'
   # Shouldn't need to specify target version since it should read from .ruby-version but
   # sadly TargetRubyVersion IS specified in arcadia_cops gem so we need to overwrite it.
   TargetRubyVersion: 3.0.6
@@ -16,6 +17,9 @@ Lint/UriEscapeUnescape:
   Enabled: true
 
 Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/AndOr:
