@@ -1,0 +1,103 @@
+require:
+  - rubocop
+  - rubocop-rails
+
+AllCops:
+  Exclude:
+    - '**/db/**/*'
+    - 'config/**/*'
+    - 'bin/*'
+    - 'config.ru'
+  # Shouldn't need to specify target version since it should read from .ruby-version but
+  # sadly TargetRubyVersion IS specified in arcadia_cops gem so we need to overwrite it.
+  TargetRubyVersion: 3.0.6
+
+Lint/UriEscapeUnescape:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/AndOr:
+  Enabled: true
+  EnforcedStyle: always
+
+Style/ClassVars:
+  Enabled: true
+
+Style/Dir:
+  Description: Use the `__dir__` method to retrieve the canonicalized absolute path
+    to the current file.
+  Enabled: true
+
+Style/ExpandPathArguments:
+  Description: Use `expand_path(__dir__)` instead of `expand_path('..', __FILE__)`.
+  Enabled: true
+
+Style/GlobalVars:
+  Enabled: true
+  AllowedVariables:
+    - $redis
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+Layout/HeredocIndentation:
+  Enabled: true
+
+Style/RedundantFreeze:
+  Enabled: true
+
+#RSpec/ScatteredSetup:
+#  Enabled: true
+#
+#RSpec/ScatteredLet:
+#  Enabled: true
+#
+#RSpec/Focus:
+#  Enabled: true
+
+#PaperTrail/DeclaredBeforeCallbacks:
+#  Include:
+#    - app/models/**/*
+
+Rails/FindEach:
+  Enabled: true
+  Include:
+    - app/**/*.rb
+
+Rails/TimeZone:
+  Exclude:
+    - bin/**/*
+
+Rails/SkipsModelValidations:
+  Enabled: true
+  Exclude:
+    - spec/**/*
+  ForbiddenMethods:
+    - decrement!
+    - decrement_counter
+    - increment!
+    - increment_counter
+    - insert
+    - insert!
+    - insert_all
+    - insert_all!
+    - toggle!
+    - touch
+    - touch_all
+    - update_all
+    - update_attribute
+    - update_column
+    - update_columns
+    - update_counters
+    - upsert
+    - upsert_all
+    - versioned_update_columns
+
+#Sidekiq/SymbolArguments:
+#  Enabled: true
+#
+#Sidekiq/PreferJobOverWorker:
+#  Include:
+#    - app/jobs/**/*
