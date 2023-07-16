@@ -44,7 +44,7 @@ module Api
       end
 
       def project(records)
-        return records unless fields.present?
+        return records if fields.blank?
 
         field_names = fields.split(',')
         filtered_fields = field_names.intersection(records.attribute_names)

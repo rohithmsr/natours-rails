@@ -14,7 +14,7 @@ module Api
       end
 
       def difficulty_levels_filter
-        difficulty_levels = filters.dig(:difficulty)&.split(',')
+        difficulty_levels = filters[:difficulty]&.split(',')
         { difficulty: difficulty_levels } if difficulty_levels.present?
       end
     end
