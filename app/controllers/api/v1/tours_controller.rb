@@ -8,7 +8,7 @@ module Api
         query.call
         tours = query.records
 
-        render json: { result_count: query.count, tours: tours  }
+        render json: { result_count: query.count, tours: tours }
       end
 
       def show
@@ -43,22 +43,23 @@ module Api
 
       private
 
-        def tour_params
-          params.require(:tour).permit(:name, :key, :rating, :duration, :difficulty, :price, :price_discount, :description)
-        end
+      def tour_params
+        params.require(:tour).permit(:name, :key, :rating, :duration, :difficulty, :price, :price_discount,
+                                     :description)
+      end
 
-        def index_params
-          params.permit(
-            :page,
-            :limit,
-            :fields,
-            filters: {}
-          )
-        end
+      def index_params
+        params.permit(
+          :page,
+          :limit,
+          :fields,
+          filters: {}
+        )
+      end
 
-        def not_found(message)
-          render json: { error: message }, status: :not_found
-        end
+      def not_found(message)
+        render json: { error: message }, status: :not_found
+      end
     end
   end
 end

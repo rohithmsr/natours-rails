@@ -39,22 +39,22 @@ module Api
 
       private
 
-        def paginate(records)
-          records.offset((page - 1) * limit).limit(limit)
-        end
+      def paginate(records)
+        records.offset((page - 1) * limit).limit(limit)
+      end
 
-        def project(records)
-          return records unless fields.present?
+      def project(records)
+        return records unless fields.present?
 
-          field_names = fields.split(',')
-          filtered_fields = field_names.intersection(records.attribute_names)
+        field_names = fields.split(',')
+        filtered_fields = field_names.intersection(records.attribute_names)
 
-          records.select(filtered_fields)
-        end
+        records.select(filtered_fields)
+      end
 
-        def filter_records
-          raise NotImplementedError
-        end
+      def filter_records
+        raise NotImplementedError
+      end
     end
   end
 end
