@@ -4,7 +4,7 @@ module Api
       DEFAULT_PAGE = 1
       DEFAULT_LIMIT = 10
 
-      attr_reader :params, :scope, :page, :limit, :filters, :fields
+      attr_reader :params, :scope, :page, :limit, :filters, :fields, :sort
 
       def initialize(params)
         @params = params
@@ -12,6 +12,7 @@ module Api
         @limit = params[:limit] ? params[:limit].to_i : DEFAULT_LIMIT
         @filters = params[:filters] || {}
         @fields = params[:fields]
+        @sort = params[:sort]
         @scope = default_scope
       end
 
@@ -21,6 +22,7 @@ module Api
 
       def call
         filter_records
+        sort_records
       end
 
       def all_records
@@ -54,6 +56,10 @@ module Api
 
       def filter_records
         raise NotImplementedError
+      end
+
+      def sort_records
+        scope
       end
     end
   end

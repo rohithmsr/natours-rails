@@ -53,6 +53,7 @@ module Api
           :page,
           :limit,
           :fields,
+          :sort,
           filters: {}
         )
       end
