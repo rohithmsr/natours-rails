@@ -11,6 +11,7 @@ module Api
 
       def filter_records
         @scope = scope.where(difficulty_levels_filter)
+                      .where(discounts_filter)
                       .where(range_filter(:rating))
                       .where(range_filter(:price))
                       .where(range_filter(:duration))
@@ -23,6 +24,11 @@ module Api
       def difficulty_levels_filter
         difficulty_levels = filters[:difficulty]&.split(',')
         { difficulty: difficulty_levels } if difficulty_levels.present?
+      end
+
+      def discounts_filter
+        discounts = filters[:price_discount]&.split(',')
+        { price_discount: discounts } if discounts.present?
       end
 
       def order_clause
