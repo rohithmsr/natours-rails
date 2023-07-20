@@ -1,7 +1,7 @@
 module Api
   module Queries
     class Tours < Base
-      private
+    private
 
       attr_reader :scope
 

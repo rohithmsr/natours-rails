@@ -39,7 +39,7 @@ module Api
         @scope.count
       end
 
-      private
+    private
 
       def paginate(records)
         records.offset((page - 1) * limit).limit(limit)

@@ -16,6 +16,10 @@ AllCops:
 Lint/UriEscapeUnescape:
   Enabled: true
 
+Layout/AccessModifierIndentation:
+  Enabled: true
+  EnforcedStyle: outdent
+
 Style/Documentation:
   Enabled: false
 

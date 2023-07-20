@@ -41,7 +41,7 @@ module Api
         head :no_content
       end
 
-      private
+    private
 
       def tour_params
         params.require(:tour).permit(:name, :key, :rating, :duration, :difficulty, :price, :price_discount,

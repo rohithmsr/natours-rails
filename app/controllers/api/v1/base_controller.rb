@@ -3,7 +3,7 @@ module Api
     class BaseController < ActionController::API
       before_action :snake_case_params
 
-      private
+    private
 
       def snake_case_params
         request.parameters.deep_transform_keys!(&:underscore)
