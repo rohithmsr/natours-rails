@@ -33,6 +33,14 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
 
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
+
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 3.26'
+
+  gem 'database_cleaner'
+
   # Lint
   gem 'rubocop', '~> 1.54', require: false
   gem 'rubocop-rails', '~> 2.20', '>= 2.20.2'
@@ -50,8 +58,6 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
