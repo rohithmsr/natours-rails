@@ -61,6 +61,26 @@ module Api
       def sort_records
         scope
       end
+
+      def range_filter(attribute_name)
+        filter = filters[attribute_name]
+        return if filter.blank?
+
+        from = filter['from']
+        to = filter['to']
+
+        range_filter_string(attribute_name, from, to)
+      end
+
+      def range_filter_string(attribute_name, from, to)
+        if from.present? && to.present?
+          "#{attribute_name} >= #{from} AND #{attribute_name} <= #{to}"
+        elsif from.present?
+          "#{attribute_name} >= #{from}"
+        else
+          "#{attribute_name} <= #{to}"
+        end
+      end
     end
   end
 end

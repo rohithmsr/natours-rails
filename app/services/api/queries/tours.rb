@@ -11,6 +11,9 @@ module Api
 
       def filter_records
         @scope = scope.where(difficulty_levels_filter)
+                      .where(range_filter(:rating))
+                      .where(range_filter(:price))
+                      .where(range_filter(:duration))
       end
 
       def sort_records
