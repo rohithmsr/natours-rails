@@ -8,6 +8,7 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
+require 'shoulda/matchers'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -71,6 +72,10 @@ RSpec.configure do |config|
   config.after(:all) do
     DatabaseCleaner.clean
   end
+
+  # Shoulda Matchers
+  config.include(Shoulda::Matchers::ActiveModel, type: :model)
+  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
