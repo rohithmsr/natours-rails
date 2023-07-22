@@ -20,6 +20,19 @@ Layout/AccessModifierIndentation:
   Enabled: true
   EnforcedStyle: outdent
 
+Metrics/BlockLength:
+  CountComments: false
+  IgnoredMethods:
+    - context
+    - describe
+    - it
+    - shared_examples
+    - shared_examples_for
+    - namespace
+    - draw
+    - configure
+    - group
+
 Style/Documentation:
   Enabled: false
 

@@ -8,11 +8,15 @@ FactoryBot.define do
     price { 1000 }
 
     trait :easier_tour do
+      name { 'Easy Tour' }
+      key { 'easy_tour' }
       difficulty { 'easy' }
     end
 
     trait :harder_tour do
-      difficulty { 'medium' }
+      name { 'Harder Tour' }
+      key { 'harder_tour' }
+      difficulty { 'hard' }
     end
 
     trait :tour_with_description do
