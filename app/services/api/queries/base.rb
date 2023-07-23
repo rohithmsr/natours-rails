@@ -17,7 +17,7 @@ module Api
       end
 
       def default_scope
-        raise NotImplementedError
+        nil
       end
 
       def call
@@ -49,13 +49,15 @@ module Api
         return records if fields.blank?
 
         field_names = fields.split(',')
+        # Always have id because if not present, it returns NULL
+        field_names << 'id'
         filtered_fields = field_names.intersection(records.attribute_names)
 
         records.select(filtered_fields)
       end
 
       def filter_records
-        raise NotImplementedError
+        scope
       end
 
       def sort_records
