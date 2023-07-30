@@ -1,6 +1,7 @@
 module Api
   module V1
     class ToursController < Api::V1::BaseController
+      before_action :authenticate_traveller!
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
       def index
