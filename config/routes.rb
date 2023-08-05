@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "api/v1/tours#index"
+  root "api/v1/base#home"
   devise_for :travellers, defaults: { format: :json }, path: '/api/v1/travellers',
     path_names: {
       sign_in: 'login',
