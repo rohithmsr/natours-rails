@@ -6,6 +6,6 @@ module CurrentTravellerDetails
   end
 
   def traveller_name
-    @traveller_name ||= current_traveller&.email || 'Guest'
+    @traveller_name ||= current_traveller&.full_name || 'Guest'
   end
 end

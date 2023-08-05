@@ -16,6 +16,11 @@ AllCops:
 Lint/UriEscapeUnescape:
   Enabled: true
 
+Lint/UselessMethodDefinition:
+  Exclude:
+    - 'app/controllers/travellers/registrations_controller.rb'
+    - 'app/controllers/travellers/sessions_controller.rb'
+
 Layout/AccessModifierIndentation:
   Enabled: true
   EnforcedStyle: outdent
