@@ -6,6 +6,8 @@ module Travellers
     before_action :configure_sign_up_params, only: [:create]
     # before_action :configure_account_update_params, only: [:update]
 
+    before_action :ensure_password_confirmation_exists, only: [:create]
+
     # GET /resource/sign_up
     # def new
     #   super
@@ -40,7 +42,7 @@ module Travellers
     #   super
     # end
 
-    # protected
+  protected
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_sign_up_params
@@ -61,5 +63,11 @@ module Travellers
     # def after_inactive_sign_up_path_for(resource)
     #   super(resource)
     # end
+
+    def ensure_password_confirmation_exists
+      return if params[:traveller].present? && params[:traveller][:password_confirmation].present?
+
+      render json: { error: 'Please confirm your password with `password_confirmation` field' }, status: :bad_request
+    end
   end
 end
