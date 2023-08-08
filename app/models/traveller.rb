@@ -4,7 +4,7 @@ class Traveller < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :first_name, presence: true, length: { minimum: 5 }
+  validates :first_name, presence: true
   validates :last_name, presence: true
   validate :password_complexity
 
