@@ -5,4 +5,5 @@ class ApplicationController < ActionController::Base
   # so, we are skipping CSRF Token verification for API calls
   # Source: plata.news/blog/cant verify CSRF token problem
   protect_from_forgery unless: -> { request.format.json? }
+  respond_to :json
 end
