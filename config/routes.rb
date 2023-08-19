@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :tours
+      resources :travellers, only: :show do
+        patch '/deactivate', to: 'travellers#deactivate'
+        patch '/reactivate', to: 'travellers#reactivate'
+      end
     end
   end
 end
