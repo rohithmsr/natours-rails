@@ -8,7 +8,7 @@ module Travellers
 
     before_action :ensure_password_confirmation_exists, only: [:create]
 
-    FIELDS_SKIP_PASSWORD_VERIFICATION = %i[first_name last_name].freeze
+    FIELDS_SKIP_PASSWORD_VERIFICATION = %i[first_name last_name avatar].freeze
 
     # GET /resource/sign_up
     # def new
@@ -55,12 +55,12 @@ module Travellers
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_sign_up_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name])
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name avatar])
     end
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name])
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name avatar])
     end
 
     # The path used after sign up.
