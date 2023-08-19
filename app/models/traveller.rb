@@ -4,8 +4,13 @@ class Traveller < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  before_validation :set_status, on: :create
+
+  enum status: { active: 'active', inactive: 'inactive' }
+
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :status, presence: true
   validate :password_complexity
 
   def password_complexity
@@ -18,5 +23,11 @@ class Traveller < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+private
+
+  def set_status
+    self.status = 'active'
   end
 end

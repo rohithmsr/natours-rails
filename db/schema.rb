@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_05_134028) do
+ActiveRecord::Schema.define(version: 2023_08_19_042843) do
 
   create_table "tours", force: :cascade do |t|
     t.string "name"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2023_08_05_134028) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
+    t.string "avatar"
+    t.string "status"
     t.index ["confirmation_token"], name: "index_travellers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_travellers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_travellers_on_reset_password_token", unique: true
