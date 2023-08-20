@@ -1,6 +1,10 @@
 describe Api::V1::ToursController, type: :request do
   let(:parsed_response) { JSON.parse(response.body) }
 
+  before do
+    allow_any_instance_of(described_class).to receive(:authenticate_traveller!).and_return(true)
+  end
+
   describe 'GET /index' do
     let!(:tour1) { create(:tour, :easier_tour) }
     let!(:tour2) { create(:tour, :harder_tour) }
