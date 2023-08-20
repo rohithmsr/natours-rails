@@ -28,6 +28,6 @@ class Traveller < ApplicationRecord
 private
 
   def set_status
-    self.status = 'active'
+    self.status = 'active' unless status == 'inactive'
   end
 end

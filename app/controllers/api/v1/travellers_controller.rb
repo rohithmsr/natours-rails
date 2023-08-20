@@ -15,7 +15,7 @@ module Api
         if traveller.status == 'inactive'
           render json: { error: 'Traveller Account is already inactive' }, status: :unprocessable_entity
         elsif traveller.update(status: 'inactive')
-          render json: { traveller: traveller }
+          render json: traveller
         else
           render json: { errors: traveller.errors.full_messages }, status: :unprocessable_entity
         end
@@ -27,7 +27,7 @@ module Api
         if traveller.status == 'active'
           render json: { error: 'Traveller Account is already active' }, status: :unprocessable_entity
         elsif traveller.update(status: 'active')
-          render json: { traveller: traveller }
+          render json: traveller
         else
           render json: { errors: traveller.errors.full_messages }, status: :unprocessable_entity
         end

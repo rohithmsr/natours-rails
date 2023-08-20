@@ -18,4 +18,42 @@ describe Api::V1::TravellersController, type: :controller do
       end
     end
   end
+
+  describe 'PATCH /deactivate' do
+    let!(:traveller) { create(:traveller, :active_traveller) }
+
+    it 'deactivates a traveller account' do
+      patch :deactivate, params: { traveller_id: traveller.id }
+
+      expect(response.status).to eq(200)
+      expect(parsed_response['status']).to eq('inactive')
+    end
+
+    it 'returns error when trying to deactivate already deactivated traveller account' do
+      traveller.update!(status: 'inactive')
+      patch :deactivate, params: { traveller_id: traveller.id }
+
+      expect(response.status).to eq(422)
+      expect(parsed_response['error']).to eq('Traveller Account is already inactive')
+    end
+  end
+
+  describe 'PATCH /reactivate' do
+    let!(:traveller) { create(:traveller, :inactive_traveller) }
+
+    it 'reactivates a traveller account' do
+      patch :reactivate, params: { traveller_id: traveller.id }
+
+      expect(response.status).to eq(200)
+      expect(parsed_response['status']).to eq('active')
+    end
+
+    it 'returns error when trying to reactivate already active traveller account' do
+      traveller.update!(status: 'active')
+      patch :reactivate, params: { traveller_id: traveller.id }
+
+      expect(response.status).to eq(422)
+      expect(parsed_response['error']).to eq('Traveller Account is already active')
+    end
+  end
 end
