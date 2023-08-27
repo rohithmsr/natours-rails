@@ -14,6 +14,10 @@ module Api
       def snake_case_params
         request.parameters.deep_transform_keys!(&:underscore)
       end
+
+      def not_found(message)
+        render json: { error: message }, status: :not_found
+      end
     end
   end
 end

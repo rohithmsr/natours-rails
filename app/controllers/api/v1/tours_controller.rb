@@ -17,6 +17,12 @@ module Api
         render json: tour
       end
 
+      def journeys
+        tour = Tour.find(params[:id])
+
+        render json: { journeys: tour.journeys }
+      end
+
       def create
         tour = Tour.new(tour_params)
         if tour.save
@@ -57,10 +63,6 @@ module Api
           :sort,
           filters: {}
         )
-      end
-
-      def not_found(message)
-        render json: { error: message }, status: :not_found
       end
     end
   end
