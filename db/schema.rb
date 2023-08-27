@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_19_042843) do
+ActiveRecord::Schema.define(version: 2023_08_25_123830) do
+
+  create_table "journeys", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "tour_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tour_id"], name: "index_journeys_on_tour_id"
+  end
 
   create_table "tours", force: :cascade do |t|
     t.string "name"
@@ -47,4 +56,5 @@ ActiveRecord::Schema.define(version: 2023_08_19_042843) do
     t.index ["reset_password_token"], name: "index_travellers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "journeys", "tours"
 end

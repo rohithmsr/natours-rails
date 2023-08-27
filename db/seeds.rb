@@ -39,3 +39,28 @@ end
   tour.key = generate_slug(tour.name)
   tour.save!
 end
+
+(1..5).each do |id|
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+
+  Traveller.create!(
+    first_name: first_name,
+    last_name: last_name,
+    email: Faker::Internet.email(name: "#{first_name} #{last_name}", separators: ['.']),
+    avatar: Faker::Avatar.image(size: "300x300"),
+    password: "tester1",
+    password_confirmation: "tester1"
+  )
+end
+
+(1..10).each do |id|
+  start_date = DateTime.now - rand(0..10)
+  end_date = start_date + rand(0..20)
+
+  Journey.create!(
+    start_date: start_date,
+    end_date: end_date,
+    tour_id: Tour.find(Tour.ids.sample).id
+  )
+end

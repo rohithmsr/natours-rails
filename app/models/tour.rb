@@ -5,6 +5,8 @@ class Tour < ApplicationRecord
     hard: 'hard'
   }.freeze
 
+  has_many :journeys, dependent: :destroy
+
   validates :name, presence: true
   validates :key, presence: true, uniqueness: true
   validates :rating, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }
