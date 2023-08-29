@@ -25,6 +25,7 @@ def generate_tour_name
   "#{mountain} #{job}"
 end
 
+# TOURS
 (1..30).each do |id|
   tour = Tour.new(
     name: generate_tour_name,
@@ -40,6 +41,7 @@ end
   tour.save!
 end
 
+# TRAVELLERS
 (1..5).each do |id|
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
@@ -54,6 +56,7 @@ end
   )
 end
 
+# JOURNEYS
 (1..10).each do |id|
   start_date = DateTime.now - rand(0..10)
   end_date = start_date + rand(0..20)
@@ -63,4 +66,9 @@ end
     end_date: end_date,
     tour_id: Tour.find(Tour.ids.sample).id
   )
+end
+
+# TRAVEL_ASSIGNMENTS
+(1..10).each do |id|
+  TravelAssignment.create!(traveller_id: Traveller.ids.sample, journey_id: Journey.ids.sample)
 end
