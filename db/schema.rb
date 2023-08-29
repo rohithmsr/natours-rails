@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_25_123830) do
+ActiveRecord::Schema.define(version: 2023_08_29_021342) do
 
   create_table "journeys", force: :cascade do |t|
     t.date "start_date"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 2023_08_25_123830) do
     t.index ["key"], name: "index_tours_on_key", unique: true
   end
 
+  create_table "travel_assignments", force: :cascade do |t|
+    t.integer "traveller_id", null: false
+    t.integer "journey_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["journey_id"], name: "index_travel_assignments_on_journey_id"
+    t.index ["traveller_id", "journey_id"], name: "index_travel_assignments_on_traveller_id_and_journey_id", unique: true
+    t.index ["traveller_id"], name: "index_travel_assignments_on_traveller_id"
+  end
+
   create_table "travellers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,4 +67,6 @@ ActiveRecord::Schema.define(version: 2023_08_25_123830) do
   end
 
   add_foreign_key "journeys", "tours"
+  add_foreign_key "travel_assignments", "journeys"
+  add_foreign_key "travel_assignments", "travellers"
 end

@@ -24,7 +24,10 @@ Rails.application.routes.draw do
         patch '/deactivate', to: 'travellers#deactivate'
         patch '/reactivate', to: 'travellers#reactivate'
       end
-      resources :journeys, only: %w[show create]
+      resources :journeys, only: %w[show create] do
+        post 'assign_travellers', to: 'journeys#assign_travellers'
+        delete 'unassign_travellers', to: 'journeys#unassign_travellers'
+      end
     end
   end
 end

@@ -20,5 +20,7 @@ describe Journey, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:tour) }
+    it { is_expected.to have_many(:travel_assignments) }
+    it { is_expected.to have_many(:travellers).through(:travel_assignments) }
   end
 end

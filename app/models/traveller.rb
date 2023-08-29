@@ -8,6 +8,9 @@ class Traveller < ApplicationRecord
 
   enum status: { active: 'active', inactive: 'inactive' }
 
+  has_many :travel_assignments, dependent: :destroy
+  has_many :journeys, through: :travel_assignments
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :status, presence: true

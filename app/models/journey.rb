@@ -1,6 +1,9 @@
 class Journey < ApplicationRecord
   belongs_to :tour
 
+  has_many :travel_assignments, dependent: :destroy
+  has_many :travellers, through: :travel_assignments
+
   validate :date_range_validity
   validates :start_date, presence: true
   validates :end_date, presence: true
