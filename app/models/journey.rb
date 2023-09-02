@@ -3,7 +3,7 @@ class Journey < ApplicationRecord
 
   has_many :travel_assignments, dependent: :destroy
   has_many :travellers, through: :travel_assignments
-  has_many :orders, dependent: :nullify
+  has_many :orders, dependent: :destroy
 
   validate :date_range_validity
   validates :start_date, presence: true
