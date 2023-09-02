@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_02_050617) do
+ActiveRecord::Schema.define(version: 2023_09_02_084430) do
 
   create_table "journeys", force: :cascade do |t|
     t.date "start_date"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2023_09_02_050617) do
     t.text "description"
     t.string "key"
     t.index ["key"], name: "index_tours_on_key", unique: true
+    t.index ["name"], name: "index_tours_on_name"
   end
 
   create_table "travel_assignments", force: :cascade do |t|
