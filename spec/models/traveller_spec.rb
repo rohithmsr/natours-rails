@@ -70,5 +70,6 @@ describe Traveller, type: :model do
   describe '#associations' do
     it { is_expected.to have_many(:travel_assignments) }
     it { is_expected.to have_many(:journeys).through(:travel_assignments) }
+    it { is_expected.to have_many(:orders) }
   end
 end

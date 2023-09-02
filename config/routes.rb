@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         post 'assign_travellers', to: 'journeys#assign_travellers'
         delete 'unassign_travellers', to: 'journeys#unassign_travellers'
       end
+      resources :orders, only: %w[show create update]
     end
   end
 end

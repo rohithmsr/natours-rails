@@ -10,6 +10,7 @@ class Traveller < ApplicationRecord
 
   has_many :travel_assignments, dependent: :destroy
   has_many :journeys, through: :travel_assignments
+  has_many :orders, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true

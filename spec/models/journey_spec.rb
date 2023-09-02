@@ -22,5 +22,6 @@ describe Journey, type: :model do
     it { is_expected.to belong_to(:tour) }
     it { is_expected.to have_many(:travel_assignments) }
     it { is_expected.to have_many(:travellers).through(:travel_assignments) }
+    it { is_expected.to have_many(:orders) }
   end
 end

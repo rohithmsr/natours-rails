@@ -26,7 +26,7 @@ def generate_tour_name
 end
 
 # TOURS
-(1..30).each do |id|
+(1..20).each do |id|
   tour = Tour.new(
     name: generate_tour_name,
     rating: rand(1.0..5.0).round(2),
@@ -42,7 +42,7 @@ end
 end
 
 # TRAVELLERS
-(1..5).each do |id|
+(1..20).each do |id|
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
 
