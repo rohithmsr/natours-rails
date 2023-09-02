@@ -38,8 +38,8 @@ RSpec.describe Api::Queries::Tours do
       end
 
       it 'returns string with correct order based on sign' do
-        params.merge!({ sort: '-duration,name,price,-price_discount' })
-        expect(subject.order_clause).to eq('duration DESC,name ASC,price ASC,price_discount DESC')
+        params.merge!({ sort: '-name,price,-price_discount' })
+        expect(subject.order_clause).to eq('name DESC,price ASC,price_discount DESC')
       end
     end
   end

@@ -51,7 +51,7 @@ module Api
     private
 
       def tour_params
-        params.require(:tour).permit(:name, :key, :rating, :duration, :difficulty, :price, :price_discount,
+        params.require(:tour).permit(:name, :key, :difficulty, :price, :price_discount,
                                      :description)
       end
 

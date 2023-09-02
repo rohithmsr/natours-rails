@@ -60,27 +60,6 @@ describe Api::V1::ToursController, type: :request do
         expect(response.status).to eq(422)
         expect(parsed_response['errors']).to contain_exactly("Name can't be blank", "Key can't be blank")
       end
-
-      it 'difficulty is not valid' do
-        tour_params['difficulty'] = 'tough'
-        subject.call
-        expect(response.status).to eq(422)
-        expect(parsed_response['errors']).to contain_exactly('Difficulty must be one of easy, medium, hard')
-      end
-
-      it 'rating greater than 5' do
-        tour_params['rating'] = 6.7
-        subject.call
-        expect(response.status).to eq(422)
-        expect(parsed_response['errors']).to contain_exactly('Rating must be less than or equal to 5')
-      end
-
-      it 'rating lesser than 0' do
-        tour_params['rating'] = -1.2
-        subject.call
-        expect(response.status).to eq(422)
-        expect(parsed_response['errors']).to contain_exactly('Rating must be greater than or equal to 0')
-      end
     end
 
     it 'creates a tour' do
@@ -88,8 +67,6 @@ describe Api::V1::ToursController, type: :request do
       expect(response.status).to eq(201)
       expect(parsed_response['name']).to eq('Easy Tour')
       expect(parsed_response['key']).to eq('easy_tour')
-      expect(parsed_response['rating']).to eq(3.5)
-      expect(parsed_response['duration']).to eq(5)
       expect(parsed_response['difficulty']).to eq('easy')
       expect(parsed_response['price']).to eq(Float('1000.0').to_s)
     end

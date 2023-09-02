@@ -29,8 +29,6 @@ end
 (1..20).each do |id|
   tour = Tour.new(
     name: generate_tour_name,
-    rating: rand(1.0..5.0).round(2),
-    duration: rand(1..14),
     difficulty: %w[easy medium hard].sample,
     price: rand(1000..10000),
     price_discount: [0, 0, 0, 0, 0, 10, 20, 25].sample,

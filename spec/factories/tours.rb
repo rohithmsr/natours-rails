@@ -2,8 +2,6 @@ FactoryBot.define do
   factory :tour do
     name { 'The Land II Voyager' }
     key { 'the_land_ii_voyager' }
-    rating { 3.5 }
-    duration { 5 }
     difficulty { 'medium' }
     price { 1000 }
 

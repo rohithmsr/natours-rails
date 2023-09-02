@@ -10,9 +10,7 @@ module Api
       def filter_records
         @scope = scope.where(difficulty_levels_filter)
                       .where(discounts_filter)
-                      .where(range_filter(:rating))
                       .where(range_filter(:price))
-                      .where(range_filter(:duration))
       end
 
       def sort_records
@@ -32,10 +30,12 @@ module Api
       def order_clause
         return 'id DESC' if sort.blank?
 
-        sort_attributes = sort.split(',').map do |field|
+        sort_attributes = sort.split(',').filter_map do |field|
           if field[0] == '-'
-            "#{field[1..]} DESC"
-          else
+            field = field[1..]
+
+            "#{field} DESC" if Tour.attribute_names.include?(field)
+          elsif Tour.attribute_names.include?(field)
             "#{field} ASC"
           end
         end
